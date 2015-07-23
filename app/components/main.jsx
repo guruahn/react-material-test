@@ -2,9 +2,11 @@
 
 let React = require('react');
 let mui = require('material-ui');
+let TopBar = require('./top_bar.jsx');
+
 let RaisedButton = mui.RaisedButton;
 let Dialog = mui.Dialog;
-let AppBar = mui.AppBar;
+
 let LeftNav = mui.LeftNav;
 let MenuItem = mui.MenuItem;
 let IconButton = mui.IconButton;
@@ -16,21 +18,21 @@ let Colors = mui.Styles.Colors;
 
 let Main = React.createClass({
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object
-  },
+    childContextTypes: {
+        muiTheme: React.PropTypes.object
+    },
 
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
-  },
+    getChildContext() {
+        return {
+            muiTheme: ThemeManager.getCurrentTheme()
+        };
+    },
 
-  componentWillMount() {
-    ThemeManager.setPalette({
-      accent1Color: Colors.deepOrange500
-    });
-  },
+    componentWillMount() {
+        ThemeManager.setPalette({
+            accent1Color: Colors.deepOrange500
+        });
+    },
 
     render() {
 
@@ -55,15 +57,10 @@ let Main = React.createClass({
               1-2-3-4-5
             </Dialog>
             <TopBar onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap} onRightIconButtonTouchTap={this._onRightIconButtonTouchTap}/>
-
-            <h1>material-ui</h1>
-            <h2>example project</h2>
-
+            <div id="content"></div>
             <RaisedButton label="Super Secret Password" primary={true}  />
-            <Paper zDepth={1}>
-                <p>zDepth=1</p>
-            </Paper>
-            //Hideable Left Nav
+            
+            
             <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
 
           </div>
@@ -80,46 +77,29 @@ let Main = React.createClass({
 
 });
 
-let TopBar = React.createClass({
-    _onLeftIconButtonTouchTap(){
-        this.props.onLeftIconButtonTouchTap();
-    },
-    _onRightIconButtonTouchTap() {
-        this.props.onRightIconButtonTouchTap();
-    },
-    render: function(){
-        
-        return(
-            <AppBar title="Some Day" iconClassNameRight="muidocs-icon-navigation-expand-more"  onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap} onRightIconButtonTouchTap={this._onRightIconButtonTouchTap} />
-            
-        ); 
-        
-    }
-    
-});
+
 
 let menuItems = [
-  { route: 'get-started', text: 'Get Started' },
-  { route: 'customization', text: 'Customization' },
-  { route: 'components', text: 'Components' },
-  { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
-  { 
-     type: MenuItem.Types.LINK, 
-     payload: 'https://github.com/callemall/material-ui', 
-     text: 'GitHub' 
-  },
-  { 
-     text: 'Disabled', 
-     disabled: true 
-  },
-  { 
-     type: MenuItem.Types.LINK, 
-     payload: 'https://www.google.com', 
-     text: 'Disabled Link', 
-     disabled: true 
-  },
+    { route: 'get-started', text: 'Get Started' },
+    { route: 'customization', text: 'Customization' },
+    { route: 'components', text: 'Components' },
+    { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
+    { 
+        type: MenuItem.Types.LINK, 
+        payload: 'https://github.com/callemall/material-ui', 
+        text: 'GitHub' 
+    },
+    { 
+        text: 'Disabled', 
+        disabled: true 
+    },
+    { 
+        type: MenuItem.Types.LINK, 
+        payload: 'https://www.google.com', 
+        text: 'Disabled Link', 
+        disabled: true 
+    },
 ];
-
 
 
 module.exports = Main;
