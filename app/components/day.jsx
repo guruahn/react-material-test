@@ -9,20 +9,18 @@ let Day = React.createClass({
         muiTheme: React.PropTypes.object
     },
     _loadDayFromServer: function() {
-        console.log(this.props.url);
         $.ajax({
             url: this.props.url,
             dataType: 'json',
             cache: false,
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 
                 this.setState({data: data});
                 
             }.bind(this),
-                error: function(xhr, status, err) {
-                    console.log(this.props.url, status, err.toString());
-                //console.error(this.props.url, status, err.toString());
+            error: function(xhr, status, err) {
+                console.log(this.props.url, status, err.toString());
             }.bind(this)
         });
     },
@@ -56,8 +54,8 @@ let Day = React.createClass({
 let DayList = React.createClass({
     render: function(){
         let listStyle = {
-          padding: '5%',
-          width: '90%'
+            padding: '5%',
+            width: '90%'
         };
         let dayNodes = this.props.data.map(function (day) {
             let dayStyle = { padding: '5%',marginBottom: '10px'}

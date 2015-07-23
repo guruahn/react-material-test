@@ -3,15 +3,16 @@
 let React = require('react');
 let mui = require('material-ui');
 let TopBar = require('./top_bar.jsx');
+let Profile = require('./profile.jsx');
 
 let RaisedButton = mui.RaisedButton;
 let Dialog = mui.Dialog;
-
 let LeftNav = mui.LeftNav;
 let MenuItem = mui.MenuItem;
 let IconButton = mui.IconButton;
 let FlatButton = mui.FlatButton;
 let Paper = mui.Paper;
+let TextField = mui.TextField;
 
 let ThemeManager = new mui.Styles.ThemeManager();
 let Colors = mui.Styles.Colors;
@@ -41,7 +42,7 @@ let Main = React.createClass({
           paddingTop: '0',
           width: '750px',
           margin: '0 auto',
-          backgroundColor: '#ddd'
+          backgroundColor: '#fff'
         };
 
         let standardActions = [
@@ -51,17 +52,17 @@ let Main = React.createClass({
         return (
           <div style={containerStyle}>
             <Dialog
-              title="Super Secret Password"
+              title="Please record today"
               actions={standardActions}
               ref="superSecretPasswordDialog">
-              1-2-3-4-5
+              <TextField floatingLabelText="Write down something in here." fullWidth={true} />
             </Dialog>
             <TopBar onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap} onRightIconButtonTouchTap={this._onRightIconButtonTouchTap}/>
             <div id="content"></div>
             <RaisedButton label="Super Secret Password" primary={true}  />
             
             
-            <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
+            <LeftNav ref="leftNav" docked={false} menuItems={menuItems} header={<Profile />} />
 
           </div>
         );
@@ -78,8 +79,8 @@ let Main = React.createClass({
 });
 
 
-
 let menuItems = [
+
     { route: 'get-started', text: 'Get Started' },
     { route: 'customization', text: 'Customization' },
     { route: 'components', text: 'Components' },
@@ -98,7 +99,7 @@ let menuItems = [
         payload: 'https://www.google.com', 
         text: 'Disabled Link', 
         disabled: true 
-    },
+    }
 ];
 
 
