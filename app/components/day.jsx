@@ -61,6 +61,7 @@ let DayList = React.createClass({
             let dayStyle = { padding: '5%',marginBottom: '10px'}
             return (
                 <Paper id={day.id} className="day" style={dayStyle}>
+                    <PaperDate data={day.date} />
                     {day.text}
                 </Paper>
             );
@@ -68,6 +69,16 @@ let DayList = React.createClass({
         return(
             <div className="dayList" style={listStyle}>
                 {dayNodes}
+            </div>
+        );
+    }
+});
+
+let PaperDate = React.createClass({
+    render: function(){
+        return(
+            <div className="date" >
+                {this.props.data}
             </div>
         );
     }
